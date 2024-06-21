@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>URL Shrinker</title>
+  <style>
+    body {
+      padding-top: 4.5rem;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #ffffff;
+    }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .navbar {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .container {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333333;
+    }
+    .form-control {
+      border-radius: 30px;
+    }
+    .btn-success {
+      border-radius: 30px;
+    }
+    .table-custom {
+      margin-top: 2rem;
+      border-collapse: separate;
+      border-spacing: 0 1em;
+    }
+    .table-custom thead {
+      background: #333333;
+      color: #ffffff;
+    }
+    .table-custom tbody tr {
+      background: #f8f9fa;
+      transition: background 0.3s;
+    }
+    .table-custom tbody tr:hover {
+      background: #e9ecef;
+    }
+    .table-custom tbody tr td,
+    .table-custom tbody tr th {
+      padding: 1rem;
+      border: none;
+    }
+    .table-custom tbody tr td a {
+      color: #2575fc;
+      text-decoration: none;
+    }
+    .table-custom tbody tr td a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #333333;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">URL Shrinker</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-5">
+    <h1 class="my-4 text-center">URL Shrinker</h1>
+    <form action="/shortUrls" method="POST" class="my-4 form-inline justify-content-center">
+      <label for="fullUrl" class="sr-only">Url</label>
+      <input required placeholder="Enter your URL" type="url" name="fullUrl" id="fullUrl" class="form-control col-md-8 col-sm-10 mr-2">
+      <button class="btn btn-success" type="submit">Shrink</button>
+    </form>
+    
+    <table class="table text-center table-custom table-striped table-responsive">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Full URL</th>
+          <th scope="col">Short URL</th>
+          <th scope="col">Clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shortUrls.forEach(shortUrl => { %>
+          <tr>
+            <td><a href="<%= shortUrl.full %>" target="_blank" rel="noopener noreferrer"><%= shortUrl.full %></a></td>
+            <td><a href="/<%= shortUrl.short %>" target="_blank" rel="noopener noreferrer"><%= shortUrl.short %></a></td>
+            <td><%= shortUrl.clicks %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-3 mt-4">
+    <p>&copy; 2024 URL Shrinker. All rights reserved. Web Plus Academy</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT3mxKbxCkPf4toWfjcNlGvyT9G1R1kEwqHfivSIB6k8aL9w" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-Zmp9igOk5D9HBQXGIXLLyPUA5QfsA1E/KR2dYNB1snR+DAP34zk5AT68p8iR8c9T" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-WxfpUjWTm+I8Yt9RZq+BrwzUtvWId7dx0zXpzM+hc+GibcIhYC3JlY2Hl+Lfae6j" crossorigin="anonymous"></script>
+</body>
+</html>
